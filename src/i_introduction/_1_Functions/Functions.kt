@@ -19,14 +19,21 @@ public fun pbar(): Int = 45
 internal fun ibar() = 57
 
 fun todoTask1(collection: Collection<Int>) = TODO(
-    """
+        """
         Task 1.
         Rewrite JavaCode1.task1 to Kotlin.
         You can just copy-paste it and agree to automatically convert it to Kotlin - but only in this task :).
     """,
-    references = { JavaCode1().task1(collection) })
+        references = { JavaCode1().task1(collection) })
 
 
 fun task1(collection: Collection<Int>): String {
-    todoTask1(collection)
+    val builder = StringBuilder()
+    for ((i, j) in collection.withIndex()) {
+        if (i != 0) {
+            builder.append(", ")
+        }
+        builder.append(j)
+    }
+    return "{$builder}"
 }
