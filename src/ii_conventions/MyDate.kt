@@ -42,4 +42,8 @@ class DateRangeIterator(val range: DateRange) : Iterator<MyDate> {
 
 class DateRange(public val start: MyDate, public val end: MyDate) {
     fun iterator(): Iterator<MyDate> = DateRangeIterator(this)
+
+    fun contains(date: MyDate): Boolean {
+        return date >= start && date <= end
+    }
 }
