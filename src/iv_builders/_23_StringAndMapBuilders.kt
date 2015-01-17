@@ -30,12 +30,17 @@ fun todoTask23() = TODO(
     references = { syntax.javaCollections.useMutableSet(HashSet())}
 )
 
+fun buildMap(function: MutableMap<Int, String>.() -> Unit):Map<Int, String> {
+    val map = hashMapOf<Int, String>()
+    with(map, function)
+    return map
+}
+
 fun task23(): Map<Int, String> {
-    todoTask23()
-//    return buildMap {
-//        put(0, "0")
-//        for (i in 1..10) {
-//            put(i, "$i")
-//        }
-//    }
+    return buildMap {
+        put(0, "0")
+        for (i in 1..10) {
+            put(i, "$i")
+        }
+    }
 }
