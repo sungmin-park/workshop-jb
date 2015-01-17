@@ -16,12 +16,24 @@ data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) {
     fun rangeTo(secondDate: MyDate): DateRange {
         return DateRange(this, secondDate)
     }
+
+    fun plus(interval: TimeInterval): MyDate {
+        return plus(Pair(interval, 1))
+    }
+
+    fun plus(times: Pair<TimeInterval, Int>): MyDate {
+        return addTimeIntervals(times.first, times.second)
+    }
 }
 
 enum class TimeInterval {
     DAY
     WEEK
     YEAR
+
+    fun times(i: Int): Pair<TimeInterval, Int> {
+        return Pair(this, i)
+    }
 }
 
 class DateRangeIterator(val range: DateRange) : Iterator<MyDate> {
