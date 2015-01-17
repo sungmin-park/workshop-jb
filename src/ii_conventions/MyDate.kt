@@ -12,6 +12,10 @@ data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) {
         }
         return dayOfMonth - date.dayOfMonth
     }
+
+    fun rangeTo(secondDate: MyDate): DateRange {
+        return DateRange(this, secondDate)
+    }
 }
 
 enum class TimeInterval {
