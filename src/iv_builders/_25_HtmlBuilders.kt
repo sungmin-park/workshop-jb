@@ -5,10 +5,10 @@ import iv_builders.htmlLibrary.*
 import util.TODO
 
 fun getTitleColor() = "#b9c9fe"
-fun getCellColor(index: Int, row: Int) = if ((index + row) %2 == 0) "#dce4ff" else "#eff2ff"
+fun getCellColor(index: Int, row: Int) = if ((index + row) % 2 == 0) "#dce4ff" else "#eff2ff"
 
 fun todoTask25() = TODO(
-    """
+        """
         Task 25.
         1) Fill the table with proper values from products.
         2) Color the table in a chess order (using getTitleColor() and getCellColor() functions above).
@@ -31,8 +31,19 @@ fun renderProductTable(): String {
                     text("Popularity")
                 }
             }
-            val products = getProducts()
-            todoTask25()
+            for ((i, product) in getProducts().withIndex()) {
+                tr {
+                    td(color = getTitleColor()) {
+                        text(product.description)
+                    }
+                    td(color = getCellColor(1, i)) {
+                        text(product.price)
+                    }
+                    td(color = getCellColor(2, i)) {
+                        text(product.popularity)
+                    }
+                }
+            }
         }
     }.toString()
 }
