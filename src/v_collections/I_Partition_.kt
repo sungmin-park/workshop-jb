@@ -10,9 +10,12 @@ fun example8() {
     negative == listOf(-4, -11)
 }
 
+fun <T, R> T.with(block: T.() -> R):R {
+    return with(this, block)
+}
+
 fun Customer.hasMoreUndeliveredOrdersThanDelivered():Boolean {
-    val (delivered, notDelivered) = orders.partition { it.isDelivered }
-    return notDelivered.size() > delivered.size()
+    return orders.partition({ it.isDelivered }).with { second.size() > first.size()  }
 }
 
 fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
