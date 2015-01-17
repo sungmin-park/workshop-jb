@@ -6,7 +6,4 @@ fun example5() {
     result == listOf("a", "cc", "bbb")
 }
 
-fun Shop.getCustomersSortedByNumberOfOrders(): List<Customer> {
-    // Return customers sorted by number of orders they made
-    todoCollectionTask()
-}
+fun Shop.getCustomersSortedByNumberOfOrders(): List<Customer> = customers.sortBy { it.orders.size() }
