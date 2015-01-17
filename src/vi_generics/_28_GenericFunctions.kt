@@ -5,7 +5,7 @@ import java.util.HashSet
 import util.TODO
 
 fun task28() = TODO(
-    """
+        """
         Task28.
         Add function 'partitionTo' that splits collection in two collections according to a predicate.
         Uncomment the commented invocations of 'partitionTo' below and make them compile.
@@ -14,18 +14,23 @@ fun task28() = TODO(
         You shall write a function that splits the collection in two given collections as arguments.
         The signature of the function 'toCollection()' from standard library may help you.
     """,
-        references = { (l: List<Int>) ->
+        references = {(l: List<Int>) ->
             l.partition { it > 0 }
             l.toCollection(HashSet<Int>())
         }
 )
 
+
 fun List<String>.partitionWordsAndLines(): Pair<List<String>, List<String>> {
-    task28()
-//    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
+    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
 }
 
 fun Set<Char>.partitionLettersAndOtherSymbols(): Pair<Set<Char>, Set<Char>> {
-    task28()
-//    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
+    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z' }
+}
+
+
+fun <T, C : MutableCollection<T>> Collection<T>.partitionTo(left: C, right: C, predicate: (T) -> Boolean): Pair<C, C> {
+    forEach { (if (predicate(it)) left else right).add(it) }
+    return left to right
 }
